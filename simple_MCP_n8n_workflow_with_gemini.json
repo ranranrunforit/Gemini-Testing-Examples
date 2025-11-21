@@ -1,0 +1,112 @@
+{
+  "name": "My workflow",
+  "nodes": [
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.4,
+      "position": [
+        0,
+        0
+      ],
+      "id": "1cfdcbf2-dd1f-4edb-8428-45d74fb87183",
+      "name": "When chat message received",
+      "webhookId": "f4a959bc-d57a-492d-8b2c-0ba8d2975b25"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3,
+      "position": [
+        208,
+        0
+      ],
+      "id": "1715041b-f9bb-48cf-878d-8efe78047669",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        80,
+        208
+      ],
+      "id": "6b8333a7-a11d-47ff-8953-a613d9b8955a",
+      "name": "Google Gemini Chat Model",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "wPTb9yuCrqDHzIsa",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "endpointUrl": "https://gemini-api-demos.uc.r.appspot.com/mcp",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.mcpClientTool",
+      "typeVersion": 1.2,
+      "position": [
+        208,
+        208
+      ],
+      "id": "68b84d4e-4041-44a7-adec-2823fb81d841",
+      "name": "MCP Client"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When chat message received": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "MCP Client": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "62fa7281-111b-40ca-aab0-2cec44fbcac1",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "5d9605bc49d8b3fa6446863f7167b7a8aa1c14c1548bdc40128feb9508884ac4"
+  },
+  "id": "3TZpqi1QRESK7IFE",
+  "tags": []
+}
